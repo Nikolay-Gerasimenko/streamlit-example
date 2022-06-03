@@ -36,3 +36,10 @@ with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))
+
+
+with open('example.pdf', "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+
+pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+st.markdown(pdf_display, unsafe_allow_html=True)
